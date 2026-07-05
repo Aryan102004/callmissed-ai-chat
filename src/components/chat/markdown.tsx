@@ -15,30 +15,37 @@ export function Markdown({ content }: Props) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-       code({ className, children, ...props }) {
-  const match = /language-(\w+)/.exec(className || "");
+        code({ className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || "");
 
-  if (match) {
-    return (
-      <SyntaxHighlighter
-        style={oneDark}
-        language={match[1]}
-        PreTag="div"
-      >
-        {String(children).replace(/\n$/, "")}
-      </SyntaxHighlighter>
-    );
-  }
+          if (match) {
+            return (
+              <SyntaxHighlighter
+                style={oneDark as any}
+                language={match[1]}
+                PreTag="div"
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            );
+          }
 
-  return (
-    <code
-      className="rounded bg-zinc-800 px-1.5 py-0.5 text-violet-300"
-      {...props}
-    >
-      {children}
-    </code>
-  );
-}
+          return (
+            <code
+              className="rounded bg-zinc-800 px-1.5 py-0.5 text-violet-300"
+              {...props}
+            >
+              {children}
+            </code>
+          );
+        },
+
+        h1: ({ children }) => (
+          <h1 className="mb-4 text-3xl font-bold">
+            {children}
+          </h1>
+        ),
+
         h2: ({ children }) => (
           <h2 className="mb-3 mt-6 text-2xl font-bold">
             {children}
@@ -52,31 +59,31 @@ export function Markdown({ content }: Props) {
         ),
 
         ul: ({ children }) => (
-          <ul className="list-disc pl-6 space-y-2">
+          <ul className="list-disc space-y-2 pl-6">
             {children}
           </ul>
         ),
 
         ol: ({ children }) => (
-          <ol className="list-decimal pl-6 space-y-2">
+          <ol className="list-decimal space-y-2 pl-6">
             {children}
           </ol>
         ),
 
         table: ({ children }) => (
-          <table className="my-4 w-full border-collapse border border-slate-700">
+          <table className="my-4 w-full border-collapse border border-zinc-700">
             {children}
           </table>
         ),
 
         th: ({ children }) => (
-          <th className="border border-slate-700 bg-slate-800 p-2">
+          <th className="border border-zinc-700 bg-zinc-800 p-2">
             {children}
           </th>
         ),
 
         td: ({ children }) => (
-          <td className="border border-slate-700 p-2">
+          <td className="border border-zinc-700 p-2">
             {children}
           </td>
         ),
