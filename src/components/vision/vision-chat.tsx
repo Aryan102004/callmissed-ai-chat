@@ -28,7 +28,7 @@ export function VisionChat() {
   } = useVision();
 
   return (
-    <div className="flex h-[calc(100vh-130px)] flex-col overflow-hidden rounded-3xl border border-slate-800/60 bg-slate-900/60 shadow-2xl backdrop-blur-xl">
+<div className="flex min-h-[calc(100vh-130px)] flex-col rounded-3xl border border-slate-800/60 bg-slate-900/60 shadow-2xl backdrop-blur-xl">
 
       {/* Header */}
 
