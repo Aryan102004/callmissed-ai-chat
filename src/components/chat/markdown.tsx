@@ -15,39 +15,30 @@ export function Markdown({ content }: Props) {
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       components={{
-        code({ inline, className, children, ...props }) {
-          const match = /language-(\w+)/.exec(
-            className || ""
-          );
+       code({ className, children, ...props }) {
+  const match = /language-(\w+)/.exec(className || "");
 
-          if (!inline && match) {
-            return (
-              <SyntaxHighlighter
-                style={oneDark}
-                language={match[1]}
-                PreTag="div"
-              >
-                {String(children).replace(/\n$/, "")}
-              </SyntaxHighlighter>
-            );
-          }
+  if (match) {
+    return (
+      <SyntaxHighlighter
+        style={oneDark}
+        language={match[1]}
+        PreTag="div"
+      >
+        {String(children).replace(/\n$/, "")}
+      </SyntaxHighlighter>
+    );
+  }
 
-          return (
-            <code
-              className="rounded bg-slate-700 px-1 py-0.5"
-              {...props}
-            >
-              {children}
-            </code>
-          );
-        },
-
-        h1: ({ children }) => (
-          <h1 className="mb-4 text-3xl font-bold">
-            {children}
-          </h1>
-        ),
-
+  return (
+    <code
+      className="rounded bg-zinc-800 px-1.5 py-0.5 text-violet-300"
+      {...props}
+    >
+      {children}
+    </code>
+  );
+}
         h2: ({ children }) => (
           <h2 className="mb-3 mt-6 text-2xl font-bold">
             {children}
