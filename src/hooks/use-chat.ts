@@ -125,7 +125,7 @@ export function useChat() {
       ? {
           ...msg,
           streaming: false,
-          content: `❌ ${error.message}`,
+          content: `❌ ${error instanceof Error ? error.message : "Something went wrong."}`,
         }
       : msg
   )
